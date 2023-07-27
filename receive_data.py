@@ -25,7 +25,7 @@ def getData():
     else:
         data = resp.json()
         dff = pd.DataFrame(columns =['Timer', 'ID', 'Station Code', '# of Ebikes', '# of Mech Bikes',
-                                     '# of Docks Available',
+                                     '# of Docks Available', 'Total Capacity', 'Geo Coordinates',
                                      'Timestamp'])
         for rec in data['records']:
             dff.loc[len(dff)] = [mytime, 
@@ -34,10 +34,12 @@ def getData():
                                  rec['fields']['ebike'],
                                  rec['fields']['mechanical'],
                                  rec['fields']['numdocksavailable'],
+                                 rec['fields']['capacity'],
+                                 rec['fields']['coordonnees_geo'],
                                  rec['record_timestamp']
                                  ]
         if int(data['nhits']) > 0:
-            with open("velib19-2.csv", 'a') as f:
+            with open("put_file_name_here.csv", 'a') as f:
                 dff.to_csv(f, header=True, index=False)
             print(mytime, " - ", iteration, " - Data fetched. # of rows: ", data['nhits'])
         else:
@@ -45,5 +47,5 @@ def getData():
     iteration = iteration + 1
  
 durationinsec = 1*60*10
-iteration = 144
+iteration = 1
 main()

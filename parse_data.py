@@ -4,11 +4,7 @@ dataset = []
 processedSet = {}
 formattedSet = []
 def parseData():
-    with open('velib17.csv', newline='') as csvfile:
-        csvreader = csv.reader(csvfile)
-        for row in csvreader:
-            dataset.append(row)
-    with open('velib18.csv', newline='') as csvfile:
+    with open('put_target_file_name_here.csv', newline='') as csvfile:
         csvreader = csv.reader(csvfile)
         for row in csvreader:
             dataset.append(row)
@@ -55,7 +51,7 @@ def formatData():
                 formattedSet.append(c)
 
 def writeData():
-    with open('velibdata_m.csv', 'w', newline='') as wfile:
+    with open('put_output_file_name_here.csv', 'w', newline='') as wfile:
         csvwriter = csv.writer(wfile)
         for row in formattedSet:
             csvwriter.writerow(row)
